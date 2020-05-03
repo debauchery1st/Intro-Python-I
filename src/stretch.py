@@ -38,9 +38,10 @@ class Eratosthenes(Sieve):
         while getPrime:
             getPrime = self.next_prime()
         self.primes += self.collection
-        self.collection = None
+        self.collection = []
         return True
 
 
 # print all prime numbers less than 2020
-print(Eratosthenes(2020).primes)
+soe = Eratosthenes(2020)
+print(soe.primes)

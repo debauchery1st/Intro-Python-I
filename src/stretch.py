@@ -1,5 +1,4 @@
 from math import sqrt
-
 # Stretch goal: The Sieve of Eratosthenes
 
 
@@ -43,6 +42,28 @@ class Eratosthenes(Sieve):
         return True
 
 
-# print all prime numbers less than 2020
-soe = Eratosthenes(2020)
-print(soe.primes)
+def example():
+    # print all prime numbers less than 2020
+    soe = Eratosthenes(2020)
+    print(soe.primes)
+
+
+def helpMessage():
+    title = "The Sieve of Eratosthenes\n"
+    usage = f"Usage:\n  python {argv[0]} <number>"
+    example = f"\nExample:\n  python stretch.py 42\n  [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41]"
+    print(title)
+    print(usage)
+    print(example)
+
+
+if __name__ == "__main__":
+    from sys import argv
+    if len(argv) > 1:
+        try:
+            soe = Eratosthenes(int(argv[1]))
+            print(soe.primes)
+        except ValueError as ve:
+            helpMessage()
+    else:
+        example()

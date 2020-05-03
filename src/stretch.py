@@ -11,6 +11,11 @@ class Sieve(object):
         self.stop = sqrt(n)
         self.collection = [x for x in range(2, n+1)]
 
+    def sift(self, customFilter=None):
+        if customFilter is None:
+            return self.collection
+        return list(filter(customFilter, self.collection))
+
 
 class Eratosthenes(Sieve):
     last_prime = None
@@ -24,14 +29,10 @@ class Eratosthenes(Sieve):
     def next_prime(self):
         if (self.last_prime > self.stop):
             return False
-        self.collection = self.filterMultiplesOf(self.last_prime)
         self.primes.append(self.last_prime)
+        self.collection = self.sift(lambda x: x % self.last_prime != 0)
         self.last_prime = self.collection[0]
         return True
-
-    def filterMultiplesOf(self, num):
-        def foo(bar): return bar % num != 0
-        return list(filter(foo, self.collection))
 
     def run(self):
         getPrime = True

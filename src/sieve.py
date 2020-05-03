@@ -12,7 +12,7 @@ class Sieve(object):
 
     def sift(self, customFilter=None):
         if customFilter is None:
-            return self.collection
+            return
         return list(filter(customFilter, self.collection))
 
 
@@ -30,8 +30,8 @@ class Eratosthenes(Sieve):
     def next_prime(self):
         if (self.last_prime > self.stop):
             return False
-        self.primes.append(self.last_prime)
         self.collection = self.sift(lambda x: x % self.last_prime != 0)
+        self.primes.append(self.last_prime)
         self.last_prime = self.collection[0]
         return True
 
@@ -39,8 +39,7 @@ class Eratosthenes(Sieve):
         getPrime = True
         while getPrime:
             getPrime = self.next_prime()
-        self.primes += self.collection
-        self.collection = []
+        self.primes = sorted([x for x in set(self.primes + self.collection)])
         return True
 
 

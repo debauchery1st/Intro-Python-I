@@ -24,12 +24,12 @@ class Eratosthenes(Sieve):
     def next_prime(self):
         if (self.last_prime > self.stop):
             return False
-        self.collection = self.filterPowersOf(self.last_prime)
+        self.collection = self.filterMultiplesOf(self.last_prime)
         self.primes.append(self.last_prime)
         self.last_prime = self.collection[0]
         return True
 
-    def filterPowersOf(self, num):
+    def filterMultiplesOf(self, num):
         def foo(bar): return bar % num != 0
         return list(filter(foo, self.collection))
 

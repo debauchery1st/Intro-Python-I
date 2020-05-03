@@ -4,11 +4,9 @@ from math import sqrt
 
 
 class Sieve(object):
-    stop = None
     collection = None
 
     def __init__(self, n):
-        self.stop = sqrt(n)
         self.collection = [x for x in range(2, n+1)]
 
     def sift(self, customFilter=None):
@@ -19,10 +17,12 @@ class Sieve(object):
 
 class Eratosthenes(Sieve):
     last_prime = None
+    stop = None
     primes = []
 
     def __init__(self, n):
         super().__init__(n)
+        self.stop = sqrt(n)
         self.last_prime = self.collection[0]
         self.run()
 

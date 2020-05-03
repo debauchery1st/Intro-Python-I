@@ -35,9 +35,9 @@ class Eratosthenes(Sieve):
             return False
         # remove any numbers divisible by "last_prime"
         self.collection = self.sift(lambda x: x % self.last_prime != 0)
-        # store the list of primes we have sifted thus far
+        # update the list of primes we have sifted thus far
         self.primes.append(self.last_prime)
-        # remove any stored primes from the collection
+        # remove stored primes from collection
         self.collection = self.sift(lambda x: x not in self.primes)
         # the first element of our sifted collection becomes the next prime
         self.last_prime = self.collection[0]
@@ -78,4 +78,4 @@ if __name__ == "__main__":
         except ValueError as ve:
             print(help_message)
     else:
-        example()
+        print(help_message)

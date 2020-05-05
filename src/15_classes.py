@@ -4,7 +4,7 @@
 # YOUR CODE HERE
 
 
-class LatLon(object):
+class LatLon:
     lat = None
     lon = None
 
